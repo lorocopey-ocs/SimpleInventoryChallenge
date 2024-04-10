@@ -1,32 +1,18 @@
-# Desafío de Programación: Gestor de Inventarios Simplificado
+# INSTRUCCIONES
 
-## Descripción
-Este desafío consiste en desarrollar una aplicación en PHP que actúe como un sistema básico de gestión de inventarios para una tienda pequeña. El objetivo es evaluar tus habilidades en resolución de problemas, programación en PHP y manejo de estructuras de datos básicas.
+Se puede correr en cualquier implementacion de server HTTP, tanto en Apache como NGINX, preferiblemente que se corriera
+usando la imagen de Docker que he incluido ya que lo he testeado varias veces y en diferentes computadoras y parece funcionar bien, en caso
+de no usar el Docker, el unico requisito es que se tenga el permiso de la carpeta donde se va a correr ya que debido a no tener que usar
+las incomodas variables de sessiones o cualquier forma rara de auto-post/redirect a pagina, utilizo un fichero, llamado data.json, el mismo se crea
+si no existe durante la primera peticion de insert, en caso super raro que no funcione, se debe a que no se tiene el permiso apropiado en el directorio
+por lo cual le es imposible a PHP crear el directorio pero ese caso no deberia ser comun, en sistemas operativos basados en Windows ese problema es inexistente.
 
-## Requisitos Funcionales
-- **Añadir Producto:** Permite añadir un nuevo producto al inventario con nombre, cantidad y precio por unidad.
-- **Eliminar Producto:** Permite eliminar un producto del inventario por su nombre.
-- **Buscar Producto:** Permite buscar un producto por nombre, mostrando su cantidad y precio.
-- **Listar Productos:** Muestra un listado de todos los productos en el inventario.
+para acceder, como el proyecto posee index.php, se usa la clasica nomeclatura:
+- http://localhost (Servidores normales)
+- http://localhost:8080 (Docker)
 
-## Requisitos Técnicos
-- Utiliza PHP puro sin frameworks.
-- Escribe código limpio, bien organizado y comentado.
-- Aplica principios de programación orientada a objetos donde sea apropiado.
-- Implementa manejo de errores básico.
+## Docker Quick Guide
 
-## Entrega
-1. Haz un fork de este repositorio.
-2. Desarrolla la solución en tu fork.
-3. Crea un pull request a este repositorio con tu solución.
-4. No es necesario añadir estilos CSS, la evaluación se centra en el rendimiento de la aplicación no en la estetica.
-
-Incluye en tu pull request cualquier instrucción necesaria para ejecutar tu aplicación, así como una breve descripción de tu enfoque.
-
-## Criterios de Evaluación
-- Correctitud del código.
-- Calidad y organización del código.
-- Implementación de los requisitos funcionales y técnicos.
-- Documentación y comentarios en el código.
-
-¡Buena suerte!
+Unicamente se requieren dos comandos para hacer funcionar el proyecto (puede necesitar sudo si esta en Linux):
+- docker compose build
+- docker compose up

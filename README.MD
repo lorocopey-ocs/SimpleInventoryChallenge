@@ -1,32 +1,60 @@
-# Desafío de Programación: Gestor de Inventarios Simplificado
+# Simple Inventory Management System
 
-## Descripción
-Este desafío consiste en desarrollar una aplicación en PHP que actúe como un sistema básico de gestión de inventarios para una tienda pequeña. El objetivo es evaluar tus habilidades en resolución de problemas, programación en PHP y manejo de estructuras de datos básicas.
+This repository contains a basic inventory management system implemented in PHP. The system allows users to manage inventory items for a small store.
 
-## Requisitos Funcionales
-- **Añadir Producto:** Permite añadir un nuevo producto al inventario con nombre, cantidad y precio por unidad.
-- **Eliminar Producto:** Permite eliminar un producto del inventario por su nombre.
-- **Buscar Producto:** Permite buscar un producto por nombre, mostrando su cantidad y precio.
-- **Listar Productos:** Muestra un listado de todos los productos en el inventario.
+## Versions
 
-## Requisitos Técnicos
-- Utiliza PHP puro sin frameworks.
-- Escribe código limpio, bien organizado y comentado.
-- Aplica principios de programación orientada a objetos donde sea apropiado.
-- Implementa manejo de errores básico.
+Two versions of the inventory management system have been implemented:
 
-## Entrega
-1. Haz un fork de este repositorio.
-2. Desarrolla la solución en tu fork.
-3. Crea un pull request a este repositorio con tu solución.
-4. No es necesario añadir estilos CSS, la evaluación se centra en el rendimiento de la aplicación no en la estetica.
+1. **Console Version:** Implemented using PHP native features without any frameworks. This version provides a command-line interface for interacting with the inventory management system.
 
-Incluye en tu pull request cualquier instrucción necesaria para ejecutar tu aplicación, así como una breve descripción de tu enfoque.
+2. **Web Version:** Implemented using PHP native features with adherence to best programming practices. This version provides a web interface for managing inventory items.
 
-## Criterios de Evaluación
-- Correctitud del código.
-- Calidad y organización del código.
-- Implementación de los requisitos funcionales y técnicos.
-- Documentación y comentarios en el código.
+## Features
 
-¡Buena suerte!
+Both versions of the inventory management system include the following features:
+
+- Add Product: Add a new product to the inventory with a name, quantity, and price per unit.
+- Remove Product: Delete a product from the inventory by its name.
+- Search Product: Find a product by its name and display its quantity and price.
+- List Products: Display a list of all products in the inventory.
+
+## Technical Details
+
+- Implemented in PHP without the use of any frameworks.
+- Code is organized, well-commented, and follows best programming practices.
+- Object-oriented programming principles are applied where appropriate.
+- Basic error handling is implemented.
+
+## How to Run
+
+Both versions of the inventory management system can be executed by following the instructions provided in their respective README files.
+
+## Evaluation Criteria
+
+Your solution will be evaluated based on the following criteria:
+
+- Correctness of the code.
+- Quality and organization of the code.
+- Implementation of functional and technical requirements.
+- Documentation and comments in the code.
+
+##  Author(s)
+
+
+**Marvin E. Gonzales H**, [*@soymegh*](https://github.com/soymegh).
+
+"Constantly learning but trying to do things the best I can."
+
+
+## License
+```
+MIT License
+Copyright (c) 2022 Jonathan Areas
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all

@@ -1,0 +1,3 @@
+T-shirt,10,15.99
+Ground Coffe,20,7.50
+Smartphone,10,500

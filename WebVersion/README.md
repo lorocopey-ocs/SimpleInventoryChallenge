@@ -15,7 +15,7 @@ This is a simple inventory management system implemented in PHP.
 
 2. **Navigate to the Directory:** Change your current directory to the project directory:
 
-`cd SimpleInventoryChallenge`
+`cd SimpleInventoryChallenge/WebVersion`
 
 
 
@@ -25,7 +25,7 @@ This is a simple inventory management system implemented in PHP.
 
 5. **Access the Application:** Once the server is running, open your web browser and navigate to the following URL:
 
-`http://localhost/SimpleInventoryChallenge/`
+`http://localhost/SimpleInventoryChallenge/WebVersion`
 
 
 

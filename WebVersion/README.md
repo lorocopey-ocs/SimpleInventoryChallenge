@@ -1,4 +1,4 @@
-# Simple Inventory Management System
+# Simple Inventory Management System (Web Version)
 
 This is a simple inventory management system implemented in PHP.
 

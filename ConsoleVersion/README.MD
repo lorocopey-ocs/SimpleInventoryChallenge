@@ -2,7 +2,7 @@
 
 This is a simple inventory management system implemented in PHP.
 
-![Index](assets/screen/index.png)
+![Index](assets/index.png)
 
 
 ## How to Run

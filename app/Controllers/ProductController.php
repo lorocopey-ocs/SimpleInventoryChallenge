@@ -14,10 +14,16 @@ class ProductController extends Controller
 
     public function index()
     {
-        return $this->productService->lists();
+        $products = $this->productService->lists();
+        return $this->view(route: 'product.index', params: ["products" => $products]);
     }
 
     public function create()
+    {
+        return $this->view(route: 'product.create');
+    }
+
+    public function store()
     {
 
     }

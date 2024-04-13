@@ -3,9 +3,33 @@ namespace App\Services;
 
 class ProductService
 {
-    public function lists()
+    public static array $products = [
+        [
+            "id"    => '00abc',
+            "name"  => 'Producto Numero 1',
+            "stock" => 15,
+            "price" => 15.02
+        ],
+        [
+            "id"    => '01abc',
+            "name"  => 'Producto Numero 2',
+            "stock" => 25,
+            "price" => 35.20
+        ],
+        [
+            "id"    => '02abc',
+            "name"  => 'Producto Numero 3',
+            "stock" => 50,
+            "price" => 49.99
+        ]
+    ];
+
+    /**
+     * @return array send all the products registered
+    */
+    public function lists(): array
     {
-        return 'aqui tiene q estar toda las lista';
+        return self::$products;
     }
 
     /**
@@ -24,11 +48,12 @@ class ProductService
      * @return array return the data of product include your id
      */
 
-    public function add(array $product): array
+    public function add(array &$product): array
     {
-        $product->id = uniqid('', true);
+        $product['id'] = uniqid('', true);
+        self::$products[] = $product;
 
-        return [];
+        return self::$products;
     }
 
     public function delete(string $id)

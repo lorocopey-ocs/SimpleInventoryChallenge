@@ -26,8 +26,9 @@ class ProductController extends Controller
     public function store()
     {
         $data = $_POST;
-        $products = $this->productService->add($data);
-        return $this->view(route: 'product.index', params: ["products" => $products]);
+        $this->productService->add($data);
+        $this->redirect(route: '/product');
+        //return $this->view(route: 'product.index', params: ["products" => $products]);
     }
 
     public function show($id)

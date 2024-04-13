@@ -3,33 +3,28 @@ namespace App\Services;
 
 class ProductService
 {
-    public array $products = [
-        [
-            "id"    => '661ae82f16c3b679637335',
-            "name"  => 'Producto Numero 1',
-            "stock" => 15,
-            "price" => 15.02
-        ],
-        [
-            "id"    => '01abc',
-            "name"  => 'Producto Numero 2',
-            "stock" => 25,
-            "price" => 35.20
-        ],
-        [
-            "id"    => '02abc',
-            "name"  => 'Producto Numero 3',
-            "stock" => 50,
-            "price" => 49.99
-        ]
-    ];
+    public string $pathDB = "../database/data.json";
+
+    /**
+     * Open the file data.json
+     * @return array convert the data got in array
+     */
+    public function getDataJson(): array
+    {
+        $json = json_decode(file_get_contents($this->pathDB));
+        $data = [];
+        foreach ($json as $row) {
+            $data[$row->id] = $row;
+        }
+        return $data;
+    }
 
     /**
      * @return array send all the products registered
     */
     public function lists(): array
     {
-        return $this->products;
+        return $this->getDataJson();
     }
 
     /**
@@ -55,10 +50,13 @@ class ProductService
     public function add(array &$product): array
     {
         $id = uniqid('', true);
+        $data = $this->getDataJson();
         $product['id'] = str_replace('.','', $id);
-        $this->products[] = $product;
+        $data[$id] = (object)$product;
+        $json = json_encode(array_values($data), JSON_PRETTY_PRINT);
+        file_put_contents($this->pathDB, $json);
 
-        return $this->products;
+        return $product;
     }
 
     /**
@@ -85,14 +83,15 @@ class ProductService
     {
         $index = -1;
         $item = [];
-        foreach ($this->products as $indexProd => $product) {
-            if ($product['id'] === $id) {
+        $data = $this->getDataJson();
+        foreach ($data as $indexProd => $product) {
+            if ($product->id === $id) {
                 $item = $product;
                 $index = $indexProd;
                 break;
             }
         }
 
-        return $type === 'index' ? $index : $item;
+        return $type === 'index' ? $index : (array)$item;
     }
 }

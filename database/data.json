@@ -1,0 +1,20 @@
+[
+    {
+        "id": "000aaa",
+        "name": "Producto numero 0001",
+        "price": 15.69,
+        "stock": 25
+    },
+    {
+        "id": "001aaa",
+        "name": "Producto numero 0002",
+        "price": 79.99,
+        "stock": 19
+    },
+    {
+        "name": "producto numero 0003",
+        "stock": "50",
+        "price": "58.75",
+        "id": "661afb91367e2454833459"
+    }
+]

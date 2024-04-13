@@ -15,17 +15,17 @@
         <thead>
         <th>Name</th>
         <th>Stock</th>
-        <th>Price</th>
+        <th>Price $</th>
         <th>Action</th>
         </thead>
         <tbody>
         <?php foreach ($products as $product): ?>
         <tr>
-            <td><?= $product['name'] ?></td>
-            <td><?= $product['stock'] ?></td>
-            <td><?= $product['price'] ?></td>
-            <td><a href="/product/<?= $product['id'] ?>">show</a></td>
-            <td><a href="/product/<?= $product['id'] ?>/delete">delete</a></td>
+            <td><?= $product->name ?></td>
+            <td><?= $product->stock ?></td>
+            <td><?= $product->price ?></td>
+            <td><a href="/product/<?= $product->id ?>">show</a></td>
+            <td><a href="/product/<?= $product->id ?>/delete">delete</a></td>
         </tr>
         <?php endforeach; ?>
         </tbody>

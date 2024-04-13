@@ -8,7 +8,7 @@
     <title>Show Product</title>
 </head>
 <body>
-    <a href="/product"> <- back</a>
+    <a href="/product"> <- Back</a>
     <h3>Product: <?= $product['name'] ?> </h3>
     <p><b>Stock:</b> <?= $product['stock'] ?></p>
     <p><b>Price ($):</b> <?= $product['price'] ?></p>

@@ -7,7 +7,7 @@ class ProductService
 
     /**
      * Open the file data.json
-     * @return array convert the data got in array
+     * @return array convert the data got in an array
      */
     public function getDataJson(): array
     {
@@ -17,6 +17,17 @@ class ProductService
             $data[$row->id] = $row;
         }
         return $data;
+    }
+
+    /**
+     * Updated or write the data in the file data.json
+     * @param array $data new data save in the file
+     * @return bool
+    */
+    public function updateDataJson(array $data): bool
+    {
+        $json = json_encode(array_values($data), JSON_PRETTY_PRINT);
+        return file_put_contents($this->pathDB, $json);
     }
 
     /**
@@ -53,8 +64,7 @@ class ProductService
         $data = $this->getDataJson();
         $product['id'] = str_replace('.','', $id);
         $data[$id] = (object)$product;
-        $json = json_encode(array_values($data), JSON_PRETTY_PRINT);
-        file_put_contents($this->pathDB, $json);
+        $this->updateDataJson($data);
 
         return $product;
     }
@@ -62,14 +72,16 @@ class ProductService
     /**
      * Remove a product specific of the list
      * @param string $id
-     * @return array All the products existing
+     * @return string Send a confirmation message
     */
-    public function delete(string $id): array
+    public function delete(string $id): string
     {
-        $index = $this->findById($id, 'index');
-        array_splice($this->products, $index, 1);
-
-        return $this->products;
+        $data = $this->getDataJson();
+        if (isset($data[$id])) {
+            unset($data[$id]);
+            $response = $this->updateDataJson($data);
+        }
+        return $response ? 'Deleted data' : 'Dont Delete';
     }
 
     /**

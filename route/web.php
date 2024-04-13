@@ -2,17 +2,14 @@
 require_once '../libs/Route.php';
 
 use Libs\Route;
+use App\Controllers\ProductController;
 
-Route::get('/', function () {
-    echo 'Lista de production';
-});
+Route::get('/', [ProductController::class, 'index']);
 
-Route::get('/product', function () {
-    echo 'Lista de production';
-});
+Route::get('/product', [ProductController::class, 'index']);
 
 Route::get('/product/:slug', function ($slug) {
-    echo 'production: '.$slug;
+    echo 'product: '.$slug;
 });
 
 Route::dispatch();

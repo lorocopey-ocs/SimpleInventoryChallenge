@@ -1,16 +1,20 @@
 <?php
-namespace App\Controller;
 
+namespace App\Controllers;
 use App\Services\ProductService;
 
 class ProductController extends Controller
 {
-    public function __construct(public ProductService $productService)
-    {}
+    public ProductService $productService;
+
+    public function __construct()
+    {
+        $this->productService = new ProductService;
+    }
 
     public function index()
     {
-
+        return $this->productService->lists();
     }
 
     public function create()

@@ -5,7 +5,7 @@ class ProductService
 {
     public function lists()
     {
-
+        return 'aqui tiene q estar toda las lista';
     }
 
     /**

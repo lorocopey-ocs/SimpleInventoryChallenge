@@ -3,9 +3,9 @@ namespace App\Services;
 
 class ProductService
 {
-    public static array $products = [
+    public array $products = [
         [
-            "id"    => '00abc',
+            "id"    => '661ae82f16c3b679637335',
             "name"  => 'Producto Numero 1',
             "stock" => 15,
             "price" => 15.02
@@ -29,7 +29,7 @@ class ProductService
     */
     public function lists(): array
     {
-        return self::$products;
+        return $this->products;
     }
 
     /**
@@ -39,7 +39,11 @@ class ProductService
      */
     public function search(string $id): array
     {
-        return  [];
+        $product = array_filter($this->products, function($product) use ($id){
+            return $product['id'] === $id;
+        });
+
+        return array_values($product)[0] ?? [];
     }
 
     /**
@@ -50,14 +54,45 @@ class ProductService
 
     public function add(array &$product): array
     {
-        $product['id'] = uniqid('', true);
-        self::$products[] = $product;
+        $id = uniqid('', true);
+        $product['id'] = str_replace('.','', $id);
+        $this->products[] = $product;
 
-        return self::$products;
+        return $this->products;
     }
 
-    public function delete(string $id)
+    /**
+     * Remove a product specific of the list
+     * @param string $id
+     * @return array All the products existing
+    */
+    public function delete(string $id): array
     {
+        $index = $this->findById($id, 'index');
+        array_splice($this->products, $index, 1);
 
+        return $this->products;
+    }
+
+    /**
+     * Search
+     * @param string $id
+     * @param string $type there are 2 option: index and values
+     * @return int|array send index or position of the object or the value
+     *
+    */
+    public function findById(string $id, string $type): int|array
+    {
+        $index = -1;
+        $item = [];
+        foreach ($this->products as $indexProd => $product) {
+            if ($product['id'] === $id) {
+                $item = $product;
+                $index = $indexProd;
+                break;
+            }
+        }
+
+        return $type === 'index' ? $index : $item;
     }
 }

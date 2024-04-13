@@ -9,7 +9,7 @@
 </head>
 <body>
     <h4>Create a new product</h4>
-    <form action="">
+    <form action="/product" method="post">
         <label for="txtName">Name:</label>
         <input type="text" name="name" id="txtName">
         <br>

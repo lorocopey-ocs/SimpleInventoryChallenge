@@ -9,7 +9,7 @@
 </head>
 <body>
 <div>
-    <button>Add Product</button>
+    <a href="/product/create">Add</a>
     <h5>List Products</h5>
     <table>
         <thead>
@@ -24,6 +24,8 @@
             <td><?= $product['name'] ?></td>
             <td><?= $product['stock'] ?></td>
             <td><?= $product['price'] ?></td>
+            <td><a href="/product/<?= $product['id'] ?>">show</a></td>
+            <td><a href="/product/<?= $product['id'] ?>/delete">delete</a></td>
         </tr>
         <?php endforeach; ?>
         </tbody>

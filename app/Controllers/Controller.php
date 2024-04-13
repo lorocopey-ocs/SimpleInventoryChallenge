@@ -7,7 +7,6 @@ class Controller
     public function view(string $route, array $params = [])
     {
         extract($params, EXTR_OVERWRITE);
-
         $route = str_replace('.','/', $route);
         $path = "../resources/views/{$route}.php";
         if (file_exists($path)){
@@ -17,5 +16,10 @@ class Controller
         }
 
         return "File not exist";
+    }
+
+    public function redirect(string $route)
+    {
+        header("Location: {$route}");
     }
 }

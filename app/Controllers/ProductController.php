@@ -25,16 +25,27 @@ class ProductController extends Controller
 
     public function store()
     {
-
+        $data = $_POST;
+        $products = $this->productService->add($data);
+        return $this->view(route: 'product.index', params: ["products" => $products]);
     }
 
-    public function show()
+    public function show($id)
     {
-
+        $product = $this->productService->findById(id: $id, type: 'value');
+        return $this->view(route: 'product.show', params: ['product' => $product]);
     }
 
-    public function delete()
+    public function delete($id)
     {
+        $product = $this->productService->findById(id: $id, type: 'value');
+        return $this->view(route: 'product.delete', params: ["product" => $product]);
+    }
 
+    public function destroy($id)
+    {
+        $products = $this->productService->delete(id: $id);
+
+        return $this->redirect(route: '/product');
     }
 }

@@ -1,5 +1,16 @@
 # Desafío de Programación: Gestor de Inventarios Simplificado
 
+## Version:
+- **PHP:** 8.0
+- **Arquitectura:** MVC
+- **Base de Datos:** Archivo en Json (data.json)
+
+## Funciones:
+ - Añadir Producto
+ - Eliminar Product
+ - Listar y Buscar Productos
+ - Mostrar Detalle del Producto
+
 ## Descripción
 Este desafío consiste en desarrollar una aplicación en PHP que actúe como un sistema básico de gestión de inventarios para una tienda pequeña. El objetivo es evaluar tus habilidades en resolución de problemas, programación en PHP y manejo de estructuras de datos básicas.
 

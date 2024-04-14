@@ -9,8 +9,12 @@
 </head>
 <body>
 <div>
-    <a href="/product/create">Add</a>
+    <a href="/product/create">Add Product</a>
     <h5>List Products</h5>
+    <form action="/product" method="get">
+        <input type="text" name="search" id="txtSearch">
+        <button type="submit">search</button>
+    </form>
     <table>
         <thead>
         <th>Name</th>

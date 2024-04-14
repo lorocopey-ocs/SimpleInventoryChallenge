@@ -18,7 +18,7 @@ class Controller
         return "File not exist";
     }
 
-    public function redirect(string $route)
+    public function redirect(string $route): void
     {
         header("Location: {$route}");
     }

@@ -12,9 +12,20 @@ class ProductController extends Controller
         $this->productService = new ProductService;
     }
 
-    public function index()
+    /**
+     * List product
+     * Return a list de products with all data or filter by name
+     * the list show in the view the product/index
+     * route: "/" or "/product"
+     * @param array $request by default is empty, also it can contain the variable 'search'
+    */
+    public function index(array $request = [])
     {
         $products = $this->productService->lists();
+        if (!empty($request)) {
+           $products = $this->productService->searchByName($products, $request['search']);
+        }
+
         return $this->view(route: 'product.index', params: ["products" => $products]);
     }
 
@@ -27,8 +38,7 @@ class ProductController extends Controller
     {
         $data = $_POST;
         $this->productService->add($data);
-        $this->redirect(route: '/product');
-        //return $this->view(route: 'product.index', params: ["products" => $products]);
+        $this->redirect(route: '/');
     }
 
     public function show($id)
@@ -45,8 +55,8 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        $products = $this->productService->delete(id: $id);
+        $this->productService->delete(id: $id);
 
-        return $this->redirect(route: '/product');
+        return $this->redirect(route: '/');
     }
 }

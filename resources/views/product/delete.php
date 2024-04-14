@@ -13,7 +13,7 @@
             <h3>Delete Product</h3>
             <p>Are you sure delete the product <?= $product['name']?> ?</p>
             <button type="submit">Delete</button>
-            <a href="/product"> Back</a>
+            <a href="/product"> Cancel</a>
         </form>
     </div>
 </body>

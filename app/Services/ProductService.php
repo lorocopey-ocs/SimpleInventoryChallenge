@@ -7,6 +7,7 @@ class ProductService
 
     /**
      * Open the file data.json
+     * This function opens the data.json and returns a new array con index custom this is the id each product
      * @return array convert the data got in an array
      */
     public function getDataJson(): array
@@ -36,20 +37,6 @@ class ProductService
     public function lists(): array
     {
         return $this->getDataJson();
-    }
-
-    /**
-     * Search a specific product
-     * @param string $id
-     * @return array return the data about of a product: id, name, stock, price
-     */
-    public function search(string $id): array
-    {
-        $product = array_filter($this->products, function($product) use ($id){
-            return $product['id'] === $id;
-        });
-
-        return array_values($product)[0] ?? [];
     }
 
     /**
@@ -85,10 +72,12 @@ class ProductService
     }
 
     /**
-     * Search
+     * Search product by id
+     * Search a product in specific according to id
+     * and return 2 different value according to the type string
      * @param string $id
-     * @param string $type there are 2 option: index and values
-     * @return int|array send index or position of the object or the value
+     * @param string $type there are 2 options: index and values
+     * @return int|array send index or value of the object
      *
     */
     public function findById(string $id, string $type): int|array
@@ -105,5 +94,23 @@ class ProductService
         }
 
         return $type === 'index' ? $index : (array)$item;
+    }
+
+    /**
+     * Search products by name
+     * This function filters the products according to the search string
+     * @param array $products List of products to search
+     * @param string $search The search string
+     * @return array An array containing the products that match the search.
+    */
+    public function searchByName(array $products, string $search): array
+    {
+        $productsTmp = [];
+        foreach($products as $product) {
+            if (str_contains(strtolower($product->name), strtolower($search))){
+                $productsTmp[] = $product;
+            }
+        }
+        return $productsTmp;
     }
 }

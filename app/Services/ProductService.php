@@ -3,6 +3,7 @@ namespace App\Services;
 
 class ProductService
 {
+    //route path of file data.js (file database)
     public string $pathDB = "../database/data.json";
 
     /**

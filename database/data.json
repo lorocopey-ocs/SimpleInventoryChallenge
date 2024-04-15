@@ -1,0 +1,50 @@
+[
+    {
+        "id": "000aaa",
+        "name": "Producto numero 0001",
+        "price": 15.69,
+        "stock": 25
+    },
+    {
+        "id": "001aaa",
+        "name": "Producto numero 0002",
+        "price": 79.99,
+        "stock": 19
+    },
+    {
+        "name": "producto numero 0003",
+        "stock": "50",
+        "price": "58.75",
+        "id": "661afb91367e2454833459"
+    },
+    {
+        "name": "Tomate",
+        "stock": "50",
+        "price": "1.05",
+        "id": "661b205ece904743576860"
+    },
+    {
+        "name": "Cebolla",
+        "stock": "50",
+        "price": "2",
+        "id": "661b2073d2067266429749"
+    },
+    {
+        "name": "Cebolla Morada",
+        "stock": "50",
+        "price": "3",
+        "id": "661b2088bd104330945684"
+    },
+    {
+        "name": "Cuaderno",
+        "stock": "50",
+        "price": "12.55",
+        "id": "661b2736e1122036612134"
+    },
+    {
+        "name": "cuaderno Cocidos",
+        "stock": "90",
+        "price": "14",
+        "id": "661b27444e96d831000959"
+    }
+]

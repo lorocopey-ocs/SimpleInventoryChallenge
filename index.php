@@ -20,6 +20,8 @@
         include './Presentation/Product/add.php';
     } elseif ($uri === '/findProduct') {
         include './Presentation/Product/find.php';
+    }elseif ($uri === '/deleteProduct') {
+        include './Presentation/Product/delete.php';
     } else {
         echo "Not Found";
     }

@@ -12,10 +12,14 @@
             $price = $_POST['price'];
             
             $productService->addProduct($name, $amount, $price);
-            $productService->saveProductsToFile();
-            echo "Product added successfully.";
+            echo "<span style='color: green;'>Product added successfully.</span>";
+            echo "<script>
+                    setTimeout(function() {
+                       window.location.href = '/'
+                    }, 2000);
+                </script>";
         } catch (Exception $e) {
-            echo "Error adding product: " . $e->getMessage();
+            echo "<span style='color: red;'>Error adding product: .{$e->getMessage()} </span>";
         }
     } else {
         ?>
@@ -36,7 +40,6 @@
                 <input type="submit" value="Save">
             </div>
         </form>
-    
         <?php
     }
 ?>

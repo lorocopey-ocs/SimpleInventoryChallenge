@@ -1,40 +1,57 @@
 <?php
+    
     namespace SimpleInventoryChallenge\Application;
+    
     use ProductRepository;
     use SimpleInventoryChallenge\Domain\Product;
     
-    class ProductService {
+    class ProductService
+    {
         private ProductRepository $productRepository;
         
-        public function __construct(ProductRepository $productRepository) {
-            $this->productRepository = $productRepository;
+        public
+        function __construct(
+            ProductRepository $productRepository,
+        ) {
+            $this -> productRepository = $productRepository;
         }
         
-        public function addProduct($name, $amount, $price)
+        public
+        function addProduct(
+            $name,
+            $amount,
+            $price,
+        )
         : void {
-            $product = new Product($name, $amount, $price);
-            $this->productRepository->add($product);
+            $product = new Product('', $name, $amount, $price);
+            $this -> productRepository -> add($product);
         }
         
-        public function removeProduct($name)
+        public
+        function removeById(
+            $id,
+        )
         : void {
-            $this->productRepository->removeByName($name);
+            $this -> productRepository -> removeById($id);
         }
         
-        public function findProduct($id) {
-            return $this->productRepository->findById($id);
+        public
+        function findProduct(
+            $name,
+        ) {
+            return $this -> productRepository -> findByName($name);
         }
         
-        public function listProducts() {
-            return $this->productRepository->findAll();
+        public
+        function listProducts()
+        {
+            return $this -> productRepository -> findAll();
         }
         
-        public function saveProductsToFile() {
-            $this->productRepository->saveProductsToFile();
-        }
-        
-        public function loadProductsFromFile() {
-            $this->productRepository->loadProductsFromFile();
+        public
+        function loadProductsFromFile()
+        {
+            $this -> productRepository -> loadProductsFromFile();
         }
     }
 

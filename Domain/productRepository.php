@@ -4,8 +4,8 @@
     
     interface ProductRepository {
         public function add(Product $product);
-        public function removeByName(string $name);
-        public function findById( string $name);
+        public function removeById(string $id);
+        public function findByName( string $name);
         public function findAll();
     }
     

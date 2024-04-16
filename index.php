@@ -1,5 +1,17 @@
 <?php
-
+    
+    use SimpleInventoryChallenge\Application\ProductService;
+    use SimpleInventoryChallenge\Domain\JsonProductRepository;
+    
+    require_once './Domain/Product.php';
+    require_once './Domain/ProductRepository.php';
+    require_once './Domain/jsonProductRepository.php';
+    require_once './Application/ProductService.php';
+    
+    $productRepository = new JsonProductRepository();
+    $productService = new ProductService($productRepository);
+    
+    $productService->loadProductsFromFile();
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     
     if ($uri === '/' || $uri === '/listProducts') {

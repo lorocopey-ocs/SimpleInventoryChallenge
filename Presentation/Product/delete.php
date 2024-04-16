@@ -1,8 +1,8 @@
 <?php
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
+    if (isset($_GET[ 'id' ])) {
+        $id = $_GET[ 'id' ];
         try {
-    
+            
             echo "<script>
                     setTimeout(function() {
                         var element = document.getElementById('message');
@@ -12,7 +12,7 @@
                     }, 1000);
                 </script>";
             
-            $productService->removeById($id);
+            $productService -> removeProductById($id);
             echo "<span id='message' style='color: green;'>Product deleted successfully.</span>";
             include 'Presentation/Product/list.php';
         } catch (Exception $e) {

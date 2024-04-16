@@ -9,10 +9,10 @@
     require_once './Application/ProductService.php';
     
     $productRepository = new JsonProductRepository();
-    $productService = new ProductService($productRepository);
+    $productService    = new ProductService($productRepository);
     
-    $productService->loadProductsFromFile();
-    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $productService -> loadProductsFromFile();
+    $uri = parse_url($_SERVER[ 'REQUEST_URI' ], PHP_URL_PATH);
     
     if ($uri === '/' || $uri === '/listProducts') {
         include './Presentation/Product/list.php';
@@ -20,7 +20,7 @@
         include './Presentation/Product/add.php';
     } elseif ($uri === '/findProduct') {
         include './Presentation/Product/find.php';
-    }elseif ($uri === '/deleteProduct') {
+    } elseif ($uri === '/deleteProduct') {
         include './Presentation/Product/delete.php';
     } else {
         echo "Not Found";

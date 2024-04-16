@@ -12,7 +12,7 @@
         public
         function __construct()
         {
-            $this -> loadProductsFromFile();
+            $this -> loadFromFile();
         }
         
         public
@@ -20,7 +20,7 @@
             Product $product,
         ) {
             $this -> products[ 0 ] = $product;
-            $this -> saveProductsToFile();
+            $this -> saveToFile();
         }
         
         
@@ -31,7 +31,7 @@
             foreach ($this -> products as $key => $product) {
                 if ($product -> getId() === $id) {
                     unset($this -> products[ $key ]);
-                    $this -> saveProductsToFile();
+                    $this -> saveToFile();
                     break;
                 }
             }
@@ -61,11 +61,12 @@
         }
         
         public
-        function saveProductsToFile()
+        function saveToFile()
         {
             $productsArray = [];
             if (!file_exists($this -> productsFile)) {
-                mkdir(dirname($this -> productsFile), 0777, true);
+                $permissions = 0777;
+                mkdir(dirname($this -> productsFile), $permissions, true);
             }
             foreach ($this -> products as $product) {
                 $productsArray[] = [
@@ -81,7 +82,7 @@
         
         
         public
-        function loadProductsFromFile()
+        function loadFromFile()
         {
             if (file_exists($this -> productsFile)) {
                 $productsData = json_decode(file_get_contents($this -> productsFile), true);

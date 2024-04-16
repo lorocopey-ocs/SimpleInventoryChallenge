@@ -2,16 +2,17 @@
     $pageTitle = "Add Product";
     include 'Presentation/Extends/layout.php';
 ?>
-<?php include 'Presentation/Extends/menu.php'; ?>
+<?php
+    include 'Presentation/Extends/menu.php'; ?>
 <h1>Add Product</h1>
 <?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER[ 'REQUEST_METHOD' ] === 'POST') {
         try {
-            $name = $_POST['name'];
-            $amount = $_POST['amount'];
-            $price = $_POST['price'];
+            $name   = $_POST[ 'name' ];
+            $amount = $_POST[ 'amount' ];
+            $price  = $_POST[ 'price' ];
             
-            $productService->addProduct($name, $amount, $price);
+            $productService -> addProduct($name, $amount, $price);
             echo "<span style='color: green;'>Product added successfully.</span>";
             echo "<script>
                     setTimeout(function() {
@@ -44,4 +45,5 @@
     }
 ?>
 
-<?php include 'Presentation/Extends/footer.php'; ?>
+<?php
+    include 'Presentation/Extends/footer.php'; ?>

@@ -2,13 +2,14 @@
     $pageTitle = "Find Product";
     include 'Presentation/Extends/layout.php';
 ?>
-<?php include 'Presentation/Extends/menu.php'; ?>
+<?php
+    include 'Presentation/Extends/menu.php'; ?>
 <h1>Find Product</h1>
 <?php
     require_once 'productTable.php';
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $name = $_POST['name'];
-        $products = $productService->findProduct($name);
+    if ($_SERVER[ 'REQUEST_METHOD' ] === 'POST') {
+        $name     = $_POST[ 'name' ];
+        $products = $productService -> findProduct($name);
         generateProductTable($products);
     } else {
         ?>
@@ -19,5 +20,6 @@
         <?php
     }
 ?>
-<?php include 'Presentation/Extends/footer.php'; ?>
+<?php
+    include 'Presentation/Extends/footer.php'; ?>
 

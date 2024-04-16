@@ -28,7 +28,7 @@
         }
         
         public
-        function removeById(
+        function removeProductById(
             $id,
         )
         : void {
@@ -50,8 +50,9 @@
         
         public
         function loadProductsFromFile()
+        : void
         {
-            $this -> productRepository -> loadProductsFromFile();
+            $this -> productRepository -> loadFromFile();
         }
     }
 

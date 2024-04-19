@@ -44,6 +44,7 @@
                                                 <div class="flex justify-end items-center gap-x-2">
                                                     <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                     <form action="/products/delete" method="POST">
+                                                        <input type="hidden" name="_method" value="DELETE">
                                                         <input type="hidden" name="id" value="<?=$product['id']; ?>">
                                                         <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
                                                     </form>

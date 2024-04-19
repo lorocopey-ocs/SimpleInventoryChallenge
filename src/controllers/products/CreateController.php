@@ -1,6 +1,6 @@
 <?php
 
-require "Validator.php";
+use Core\Validator;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];

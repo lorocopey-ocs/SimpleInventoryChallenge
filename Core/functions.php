@@ -12,12 +12,19 @@ if (!function_exists('dd')) {
     }
 }
 
+if (!function_exists('base_path')) {
+    function base_path(string $path): string
+    {
+        return BASE_PATH . $path;
+    }
+}
+
 if (!function_exists('view')) {
     function view($name, $data = [])
     {
         extract($data);
 
-        return require __DIR__ . "/src/views/{$name}.view.php";
+        return require base_path("/src/views/{$name}.view.php");
     }
 }
 
@@ -25,7 +32,7 @@ if (!function_exists("route")) {
     function route($uri, $routes): void
     {
         if (array_key_exists($uri, $routes)) {
-            require $routes[$uri];
+            require base_path($routes[$uri]);
         } else {
             abort(404);
         }
@@ -37,7 +44,7 @@ if (!function_exists("abort")) {
     {
         http_response_code($code);
 
-        return require __DIR__ . "/src/views/{$code}.view.php";
+        return require base_path("/src/views/{$code}.view.php");
     }
 }
 

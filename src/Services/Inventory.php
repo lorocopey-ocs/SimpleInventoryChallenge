@@ -1,10 +1,10 @@
 <?php
 
-namespace Oclinicals;
+namespace Services;
 
 class Inventory
 {
-    private $products = [];
+    private array $products = [];
 
     public function addProduct(Product $product)
     {

@@ -41,7 +41,13 @@
                                                 $<?= $product['price']; ?>
                                             </td>
                                             <td class="pl-3 pr-4 py-3.5 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                <div class="flex justify-end items-center gap-x-2">
+                                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                    <form action="/products/delete" method="POST">
+                                                        <input type="hidden" name="id" value="<?=$product['id']; ?>">
+                                                        <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
 

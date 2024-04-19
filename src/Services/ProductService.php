@@ -1,10 +1,12 @@
 <?php
 
-class Product
+namespace Services;
+
+class ProductService
 {
-    private $name;
-    private $price;
-    private $quantity;
+    private string $name;
+    private float $price;
+    private int $quantity;
 
     public function __construct($name, $price, $quantity)
     {
@@ -13,22 +15,22 @@ class Product
         $this->quantity = $quantity;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getPrice()
+    public function getPrice(): float
     {
         return $this->price;
     }
 
-    public function getQuantity()
+    public function getQuantity(): int
     {
         return $this->quantity;
     }
 
-    public function setQuantity($quantity)
+    public function setQuantity($quantity): void
     {
         $this->quantity = $quantity;
     }

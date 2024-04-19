@@ -1,7 +1,8 @@
 <?php
 
+
 if (!function_exists('dd')) {
-    function dd($value)
+    function dd($value): void
     {
         echo "<pre>";
         var_dump($value);
@@ -21,7 +22,7 @@ if (!function_exists('view')) {
 }
 
 if (!function_exists("route")) {
-    function route($uri, $routes)
+    function route($uri, $routes): void
     {
         if (array_key_exists($uri, $routes)) {
             require $routes[$uri];

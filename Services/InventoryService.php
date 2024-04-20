@@ -35,8 +35,9 @@ class InventoryService
     public function loadFromFile($filename)
     {
         $data = json_decode(file_get_contents($filename), true);
+
         foreach ($data as $product) {
-            $this->products[] = new Product(
+            $this->products[] = new ProductService(
                 $product["name"],
                 $product["price"],
                 $product["quantity"]

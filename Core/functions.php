@@ -24,7 +24,7 @@ if (!function_exists('view')) {
     {
         extract($data);
 
-        return require base_path("/src/views/{$name}.view.php");
+        return require base_path("/views/{$name}.view.php");
     }
 }
 

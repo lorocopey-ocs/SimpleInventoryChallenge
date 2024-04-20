@@ -35,6 +35,7 @@ $product = new ProductService(name: $_POST['name'], price: $_POST['price'], quan
 $inventory = new InventoryService();
 
 $inventory->addProduct($product);
+$inventory->loadFromFile(filename: 'products.json');
 $inventory->saveToFile(filename: 'products.json');
 
 header("Location: /products");

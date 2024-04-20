@@ -10,7 +10,7 @@
 
         <div class="sm:mx-auto sm:w-full sm:max-w-sm mt-10">
 
-            <form class="space-y-6" method="POST">
+            <form class="space-y-6" action="/products/store" method="POST">
 
                 <div>
                     <label for="name" class="ml-px block pl-4 text-sm font-medium leading-6 text-gray-900">Name</label>

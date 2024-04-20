@@ -2,11 +2,11 @@
 
 namespace Services;
 
-class Inventory
+class InventoryService
 {
     private array $products = [];
 
-    public function addProduct(Product $product)
+    public function addProduct(ProductService $product)
     {
         $this->products[] = $product;
     }
@@ -19,7 +19,7 @@ class Inventory
         }
     }
 
-    public function saveToFile($filename)
+    public function saveToFile($filename): void
     {
         $data = [];
         foreach ($this->products as $product) {

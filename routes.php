@@ -1,8 +1,9 @@
 <?php
 
-$router->get('/', 'src/controllers/HomeController.php');
-$router->get('/products', 'src/controllers/products/IndexController.php');
-$router->post('/products/create', 'src/controllers/products/CreateController.php',);
-$router->delete('/products/delete', 'src/controllers/products/DeleteController.php');
+$router->get('/', 'src/controllers/home.php');
+$router->get('/products', 'src/controllers/products/index.php');
+$router->get('/products/create', 'src/controllers/products/create.php',);
+$router->post('/products/store', 'src/controllers/products/store.php');
+$router->delete('/products/delete', 'src/controllers/products/delete.php');
 
-dd($router->routes);
+//dd($router->routes);

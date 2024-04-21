@@ -1,9 +1,10 @@
 <?php
 session_start();
-require_once "database/database.php";
+require_once "../database/database.php";
 if ($_SESSION['username'] == null) {
     echo "<script>alert('Please login.');</script>";
     header("Refresh:0 , url=index.html");
+    exit();
 }
 $username = $_SESSION['username'];
 $sql_fetch_todos = "SELECT * FROM product ORDER BY id ASC";
@@ -14,11 +15,11 @@ $query = mysqli_query($conn, $sql_fetch_todos);
 <html lang="en">
 
 <head>
-    <title>Agregar Producto</title>
+    <title>Lista de Productos</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="faviconconfiguroweb.png">
+    <link rel="icon" href="wilsonmunoz.png">
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
     <style>
         body {
@@ -37,7 +38,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             font-family: Arial, Helvetica, sans-serif;
             margin-top: 0px;
             bottom: 0;
-            background-color: #AED6F1;
+            background-color: #298dba;
         }
         .header p {
             margin-left: 20px;
@@ -69,7 +70,6 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             width: 40%;
             padding-bottom: 10px;
         }
-
         table th,
         tr,
         td {
@@ -77,97 +77,94 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             border-collapse: collapse;
             padding: 10px 0px 10px 0px;
         }
-
         table {
             width: 100%;
         }
-
         th {
             color: white;
             background-color: #298dba;
         }
-
         tr {
             background-color: white;
         }
-
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
-
         .timeregis {
             text-align: center;
         }
-
-        .form-group {
-            margin-left: 600px;
+        .modify {
+            text-align: center;
         }
-
-        [type=text], [type=number] {
-            font-family: "Mitr", sans-serif;
-            border-radius: 15px;
-            border: transparent;
-            padding: 7px 200px 7px 5px;
+        .delete {
+            text-align: center;
         }
-
-        .return {
+        .modify .bfix {
             border-radius: 15px;
             background-color: #ffcc33;
             color: black;
             text-decoration: none;
-            padding: 4px 40px 4px 40px;
-            margin: 0px 0px 50px 100px;
-            font-size: 20px;
+            padding: 4px 20px 4px 20px;
             transition: 0.5s;
-
         }
-
-        .return:hover {
+        .modify .bfix:hover {
             background-color: #fdb515;
             color: white;
         }
-
-        .modify {
+        .delete .bdelete {
             border-radius: 15px;
-            border: transparent;
+            background-color: #e60000;
+            text-decoration: none;
             color: white;
-            padding: 4px 40px 4px 40px;
-            margin: 0px 50px 50px 100px;
-            font-size: 20px;
-            border-collapse: collapse;
-            background-color: #00A600;
-            font-family: "Mitr", sans-serif;
+            padding: 4px 20px 4px 20px;
             transition: 0.5s;
-
         }
-
-        .modify:hover {
+        .delete .bdelete:hover {
+            background-color: #D9ddd4;
+            color: red;
+        }
+        .Addlist {
+            margin-right: 100px;
+            padding: 5px 30px 5px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: white;
+            background-color: #00A600;
+            transition: 0.5s;
+        }
+        .Addlist:hover {
             color: black;
             background-color: #BBFFBB;
         }
     </style>
 </head>
-
 <body>
     <div class="header">
-        <p>ConfiguroWeb</p>
+        <h3>Inventario TI</h3>
         <a name="" id="" class="button-logout" href="logout.php" role="button">Cerrar Sesión</a>
     </div>
     <div class="container">
-        <h1>Agregar Producto</h1>
+        <h1>Lista de Productos</h1>
         <h2>Has accedido como <?php echo $str = strtoupper($username) ?></h2>
     </div>
+    
     <div class="table-product">
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
+        <form action="" method="post">
+        
+                    <label>Producto</label>
+                    <input type="text" name="product" placeholder= "Buscar elemento">
+                    <input type="submit" value="Buscar">  
+                    <br> <br> <br>          
+        <table>                     
+            <tr>
                 <th scope="col">Orden</th>
                 <th scope="col">ID:Producto</th>
                 <th scope="col">Nombre:Producto</th>
                 <th scope="col">Cantidades</th>
                 <th scope="col">Fecha:Registro</th>
-                </tr>
-            </thead>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
             <tbody>
                 <?php
                 $idpro = 1;
@@ -178,34 +175,54 @@ $query = mysqli_query($conn, $sql_fetch_todos);
                         <td><?php echo $row['proname'] ?></td>
                         <td><?php echo $row['amount'] ?></td>
                         <td class="timeregis"><?php echo $row['time'] ?></td>
+                        <td class="modify"><a name="edit" id="" class="bfix" href="../views/fix.php?id=<?php echo $row['id'] ?>&message=<?php echo $row['proname'] ?>&amount=<?php echo $row['amount']; ?> " role="button">
+                                Editar
+                            </a></td>
+                        <td class="delete"><a name="id" id="" class="bdelete" href="inventario/delete.php?id=<?php echo $row['id'] ?>" role="button">
+                                Eliminar
+                            </a></td>
                     </tr>
                 <?php
                     $idpro++;
                 } ?>
             </tbody>
         </table>
+        </form>
         <br>
-        <div class="addproduct">
-            <form method="POST" action="main/addlist.php">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Nombre de Producto</label>
-                    <br>
-                    <input type="text" class="form-control" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Cantidad</label>
-                    <br>
-                    <input type="number" class="form-control" name="amount" required> </div> <br>
-                <div class="form-button">
-                    <button type="submit" class="modify" style="float:right">Agregar Producto</button>
-                    <a name="" id="" class="return" href="list.php" role="button" style="float:left">Volver</a>
-                </div>
-            </form>
-        </div>
+        <a name="" id="" class="Addlist" style="float:right" href="addlist.php" role="button">Agregar Producto</a>
     </div>
+
+    <?php
+
+    //echo $_POST['product'];
+    if(isset($_POST["product"]) && $_POST["product"] != ''){
+        //conexión BD
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $dbname = "project";
+    $conn = new mysqli($host , $user, $pass, $dbname);
+    mysqli_query($conn , "SET character_set_result=utf8");
+    if($conn->connect_error){
+        die("Database Error : " . $conn->connect_error);
+    }
+     $product = $_POST['product'];
+     $sql = "SELECT * FROM product WHERE  proname LIKE '%$product%'";
+     $result = $conn->query($sql);
+     if($result->num_rows > 0){
+        echo "<ul>";
+        while($row = $result->fetch_assoc()){
+        echo "<li>". "El resultado de la busqueda es -> ". " ID :" .$row["id"] . " Nombre Producto: ". " ". $row["proname"]. " Cantidad: ". $row["amount"]. " Fecha: ". $row["time"] ."</li>";
+        }
+        echo "</ul>";
+     }
+    }
+    ?>
     <?php
     mysqli_close($conn);
     ?>
+
+
 </body>
 
 </html>

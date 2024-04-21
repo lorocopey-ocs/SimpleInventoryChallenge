@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "database/database.php";
+require_once "../database/database.php";
 if ($_SESSION['username'] == null) {
     echo "<script>alert('Please login.');</script>";
     header("Refresh:0 , url=index.html");
@@ -15,11 +15,11 @@ $query = mysqli_query($conn, $sql_fetch_todos);
 <html lang="en">
 
 <head>
-    <title>Lista de Productos</title>
+    <title>Editar Producto</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="wilsonmunoz.png">
+    <link rel="icon" href="dp.png">
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
     <style>
         body {
@@ -70,6 +70,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             width: 40%;
             padding-bottom: 10px;
         }
+
         table th,
         tr,
         td {
@@ -77,62 +78,63 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             border-collapse: collapse;
             padding: 10px 0px 10px 0px;
         }
+
         table {
             width: 100%;
         }
+
         th {
             color: white;
             background-color: #298dba;
         }
+
         tr {
             background-color: white;
         }
+
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
         .timeregis {
             text-align: center;
         }
-        .modify {
-            text-align: center;
+        .form-group{
+            margin-left: 600px;
         }
-        .delete {
-            text-align: center;
+        [type=text]{
+            font-family: "Mitr", sans-serif;
+            border-radius: 15px;
+            border: transparent;
+            padding: 7px 200px 7px 5px;
         }
-        .modify .bfix {
+        .return{
             border-radius: 15px;
             background-color: #ffcc33;
             color: black;
             text-decoration: none;
-            padding: 4px 20px 4px 20px;
+            padding: 4px 40px 4px 40px;
+            margin: 0px 0px 50px 100px;
+            font-size: 20px;
             transition: 0.5s;
         }
-        .modify .bfix:hover {
+        .return:hover{
             background-color: #fdb515;
             color: white;
         }
-        .delete .bdelete {
+        .modify{
             border-radius: 15px;
-            background-color: #e60000;
-            text-decoration: none;
+            border: transparent;
             color: white;
-            padding: 4px 20px 4px 20px;
-            transition: 0.5s;
-        }
-        .delete .bdelete:hover {
-            background-color: #D9ddd4;
-            color: red;
-        }
-        .Addlist {
-            margin-right: 100px;
-            padding: 5px 30px 5px 30px;
-            border-radius: 15px;
-            text-decoration: none;
-            color: white;
+            padding: 4px 40px 4px 40px;
+            margin: 0px 50px 50px 100px;
+            font-size: 20px;
+            border-collapse: collapse;
             background-color: #00A600;
+            font-family: "Mitr", sans-serif;
             transition: 0.5s;
         }
-        .Addlist:hover {
+        .modify:hover{
             color: black;
             background-color: #BBFFBB;
         }
@@ -140,31 +142,24 @@ $query = mysqli_query($conn, $sql_fetch_todos);
 </head>
 <body>
     <div class="header">
-        <h3>Inventario TI</h3>
+        <h3>ConfiguroWeb</h3>
         <a name="" id="" class="button-logout" href="logout.php" role="button">Cerrar Sesión</a>
     </div>
     <div class="container">
         <h1>Lista de Productos</h1>
         <h2>Has accedido como <?php echo $str = strtoupper($username) ?></h2>
     </div>
-    
     <div class="table-product">
-        <form action="" method="post">
-        
-                    <label>Producto</label>
-                    <input type="text" name="product" placeholder= "Buscar elemento">
-                    <input type="submit" value="Buscar">  
-                    <br> <br> <br>          
-        <table>                     
-            <tr>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
                 <th scope="col">Orden</th>
                 <th scope="col">ID:Producto</th>
                 <th scope="col">Nombre:Producto</th>
                 <th scope="col">Cantidades</th>
                 <th scope="col">Fecha:Registro</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
-            </tr>
+                </tr>
+            </thead>
             <tbody>
                 <?php
                 $idpro = 1;
@@ -175,54 +170,36 @@ $query = mysqli_query($conn, $sql_fetch_todos);
                         <td><?php echo $row['proname'] ?></td>
                         <td><?php echo $row['amount'] ?></td>
                         <td class="timeregis"><?php echo $row['time'] ?></td>
-                        <td class="modify"><a name="edit" id="" class="bfix" href="fix.php?id=<?php echo $row['id'] ?>&message=<?php echo $row['proname'] ?>&amount=<?php echo $row['amount']; ?> " role="button">
-                                Editar
-                            </a></td>
-                        <td class="delete"><a name="id" id="" class="bdelete" href="main/delete.php?id=<?php echo $row['id'] ?>" role="button">
-                                Eliminar
-                            </a></td>
                     </tr>
                 <?php
                     $idpro++;
                 } ?>
             </tbody>
         </table>
-        </form>
         <br>
-        <a name="" id="" class="Addlist" style="float:right" href="addlist.php" role="button">Agregar Producto</a>
     </div>
-
-    <?php
-
-    //echo $_POST['product'];
-    if(isset($_POST["product"]) && $_POST["product"] != ''){
-        //conexión BD
-    $host = "localhost";
-    $user = "root";
-    $pass = "";
-    $dbname = "project";
-    $conn = new mysqli($host , $user, $pass, $dbname);
-    mysqli_query($conn , "SET character_set_result=utf8");
-    if($conn->connect_error){
-        die("Database Error : " . $conn->connect_error);
-    }
-     $product = $_POST['product'];
-     $sql = "SELECT * FROM product WHERE  proname LIKE '%$product%'";
-     $result = $conn->query($sql);
-     if($result->num_rows > 0){
-        echo "<ul>";
-        while($row = $result->fetch_assoc()){
-        echo "<li>". "El resultado de la busqueda es -> ". " ID :" .$row["id"] . " Nombre Producto: ". " ". $row["proname"]. " Cantidad: ". $row["amount"]. " Fecha: ". $row["time"] ."</li>";
-        }
-        echo "</ul>";
-     }
-    }
-    ?>
+    <div class="fixproduct">
+        <form method="POST" action="../controllers/inventario/fix.php">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nombre del Producto</label>
+                <br>
+                <input type="text" class="form-control" name="name" value="<?php echo $_GET['message']; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Cantidad</label>
+                <br>
+                <input type="text" value="<?php echo $_GET['amount'] ?>" class="form-control" name="value" required>
+                <input type="hidden" value="<?php echo $_GET['id'] ?>" name="id" />
+            </div>
+            <br>
+            <div class="form-button">
+                <button type="submit" class="modify" style="float:right">Editar</button>
+                <a name="" id="" class="return" href="list.php" role="button" style="float:left">Volver</a>
+            </div>
+        </form>
+    </div>
     <?php
     mysqli_close($conn);
     ?>
-
-
 </body>
-
 </html>

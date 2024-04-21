@@ -5,7 +5,7 @@ if (trim($_POST['username']) == null || trim($_POST['password']) == null) {
     exit();
 
 } else {
-    require_once "database/database.php";
+    require_once "../database/database.php";
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn,md5($_POST['password']));
     $sql      = "SELECT username, password FROM user WHERE username ='" . $username . "' and password = '" . $password . "'";

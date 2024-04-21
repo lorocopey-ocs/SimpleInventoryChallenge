@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "../database/database.php";
+    require_once "../../database/database.php";
     if ($_SESSION['username'] == null){
         echo "<script>alert('Favor ingresar con tus credenciales')</script>";
         header("Refresh:0 , url = ../index.html");

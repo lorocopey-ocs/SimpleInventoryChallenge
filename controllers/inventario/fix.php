@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "../database/database.php";
+    require_once "../../database/database.php";
     if($_SESSION['username'] == null){
     echo "<script>alert('Please login.')</script>";
     header("Refresh:0 , url = ../index.html");

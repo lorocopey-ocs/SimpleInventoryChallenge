@@ -1,10 +1,9 @@
 <?php
 session_start();
-require_once "database/database.php";
+require_once "../database/database.php";
 if ($_SESSION['username'] == null) {
     echo "<script>alert('Please login.');</script>";
-    header("Refresh:0 , url=index.html");
-    exit();
+    header("Refresh:0 , url=../index.html");
 }
 $username = $_SESSION['username'];
 $sql_fetch_todos = "SELECT * FROM product ORDER BY id ASC";
@@ -15,11 +14,11 @@ $query = mysqli_query($conn, $sql_fetch_todos);
 <html lang="en">
 
 <head>
-    <title>Editar Producto</title>
+    <title>Agregar Producto</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="dp.png">
+    <link rel="icon" href="faviconconfiguroweb.png">
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
     <style>
         body {
@@ -38,7 +37,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             font-family: Arial, Helvetica, sans-serif;
             margin-top: 0px;
             bottom: 0;
-            background-color: #298dba;
+            background-color: #AED6F1;
         }
         .header p {
             margin-left: 20px;
@@ -99,16 +98,19 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         .timeregis {
             text-align: center;
         }
-        .form-group{
+
+        .form-group {
             margin-left: 600px;
         }
-        [type=text]{
+
+        [type=text], [type=number] {
             font-family: "Mitr", sans-serif;
             border-radius: 15px;
             border: transparent;
             padding: 7px 200px 7px 5px;
         }
-        .return{
+
+        .return {
             border-radius: 15px;
             background-color: #ffcc33;
             color: black;
@@ -117,12 +119,15 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             margin: 0px 0px 50px 100px;
             font-size: 20px;
             transition: 0.5s;
+
         }
-        .return:hover{
+
+        .return:hover {
             background-color: #fdb515;
             color: white;
         }
-        .modify{
+
+        .modify {
             border-radius: 15px;
             border: transparent;
             color: white;
@@ -133,20 +138,23 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             background-color: #00A600;
             font-family: "Mitr", sans-serif;
             transition: 0.5s;
+
         }
-        .modify:hover{
+
+        .modify:hover {
             color: black;
             background-color: #BBFFBB;
         }
     </style>
 </head>
+
 <body>
     <div class="header">
-        <h3>ConfiguroWeb</h3>
+        <p>ConfiguroWeb</p>
         <a name="" id="" class="button-logout" href="logout.php" role="button">Cerrar Sesión</a>
     </div>
     <div class="container">
-        <h1>Lista de Productos</h1>
+        <h1>Agregar Producto</h1>
         <h2>Has accedido como <?php echo $str = strtoupper($username) ?></h2>
     </div>
     <div class="table-product">
@@ -177,29 +185,27 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             </tbody>
         </table>
         <br>
-    </div>
-    <div class="fixproduct">
-        <form method="POST" action="main/fix.php">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Nombre del Producto</label>
-                <br>
-                <input type="text" class="form-control" name="name" value="<?php echo $_GET['message']; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Cantidad</label>
-                <br>
-                <input type="text" value="<?php echo $_GET['amount'] ?>" class="form-control" name="value" required>
-                <input type="hidden" value="<?php echo $_GET['id'] ?>" name="id" />
-            </div>
-            <br>
-            <div class="form-button">
-                <button type="submit" class="modify" style="float:right">Editar</button>
-                <a name="" id="" class="return" href="list.php" role="button" style="float:left">Volver</a>
-            </div>
-        </form>
+        <div class="addproduct">
+            <form method="POST" action="inventario/addlist.php">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre de Producto</label>
+                    <br>
+                    <input type="text" class="form-control" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Cantidad</label>
+                    <br>
+                    <input type="number" class="form-control" name="amount" required> </div> <br>
+                <div class="form-button">
+                    <button type="submit" class="modify" style="float:right">Agregar Producto</button>
+                    <a name="" id="" class="return" href="list.php" role="button" style="float:left">Volver</a>
+                </div>
+            </form>
+        </div>
     </div>
     <?php
     mysqli_close($conn);
     ?>
 </body>
+
 </html>

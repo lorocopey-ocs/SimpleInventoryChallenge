@@ -1,10 +1,15 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Delete the product
-    // return redirect('products');
+use Services\InventoryService;
 
+$inventory = new InventoryService();
+$inventory->loadFromFile('products.json');
 
-    $productID = $_POST['id'];
-    echo "Delete the product with ID: $productID";
-}
+$productName = $_POST['name'];
+
+$product = $inventory->findProduct($productName);
+
+$inventory->removeProduct($product);
+
+header("Location: /products");
+exit();

@@ -44,15 +44,15 @@ if (!function_exists("abort")) {
     {
         http_response_code($code);
 
-        return require base_path("/src/views/{$code}.view.php");
+        return require base_path("/views/{$code}.view.php");
     }
 }
 
 
 if (!function_exists('redirect')) {
-    function redirect($path)
+    function redirect($path): void
     {
-        header("Location: /{$path}");
+        header("Location: " . $path);
     }
 }
 

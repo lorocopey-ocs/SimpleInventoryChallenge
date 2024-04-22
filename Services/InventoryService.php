@@ -6,17 +6,31 @@ class InventoryService
 {
     private array $products = [];
 
+
     public function addProduct(ProductService $product)
     {
         $this->products[] = $product;
     }
 
-    public function removeProduct(Product $product)
+    public function findProduct($name)
     {
-        $index = array_search($product, $this->products);
-        if ($index !== false) {
-            unset($this->products[$index]);
+        foreach ($this->products as $product) {
+            if ($product->getName() === $name) {
+                return $product;
+            }
         }
+        return null;
+    }
+
+    public function removeProduct(ProductService $product): void
+    {
+        foreach ($this->products as $key => $value) {
+            if ($value->getName() === $product->getName()) {
+                unset($this->products[$key]);
+            }
+        }
+
+        $this->saveToFile('products.json');
     }
 
     public function saveToFile($filename): void
@@ -45,8 +59,25 @@ class InventoryService
         }
     }
 
-    public function getProducts()
+    public function getProducts(): array
     {
-        return $this->products;
+        $data = [];
+        foreach ($this->products as $product) {
+            $data[] = $product->toArray();
+        }
+        return $data;
+    }
+
+    public function searchProduct(string $name): ?array
+    {
+        foreach ($this->products as $product) {
+            if (strtolower($product->getName()) === strtolower($name)) {
+                $this->products = [];
+                $this->products[] = $product->toArray();
+                return $this->products;
+            }
+        }
+
+        return null;
     }
 }

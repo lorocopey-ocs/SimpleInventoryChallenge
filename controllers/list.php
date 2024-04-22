@@ -1,12 +1,17 @@
 <?php
+// Iniciar la sesión para mantener la sesión del usuario
 session_start();
+// Requerir el archivo de base de datos para la conexión
 require_once "../database/database.php";
+// Verificar si el usuario ha iniciado sesión; si no, redirigir a la página de inicio de sesión
 if ($_SESSION['username'] == null) {
     echo "<script>alert('Please login.');</script>";
     header("Refresh:0 , url=index.html");
     exit();
 }
+// Obtener el nombre de usuario de la sesión actual
 $username = $_SESSION['username'];
+// Consulta SQL para obtener todos los productos ordenados por ID
 $sql_fetch_todos = "SELECT * FROM product ORDER BY id ASC";
 $query = mysqli_query($conn, $sql_fetch_todos);
 
@@ -167,7 +172,9 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             </tr>
             <tbody>
                 <?php
+                //Contador de ID de productos
                 $idpro = 1;
+                //Recorrer los resultados de la consulta SQL
                 while ($row = mysqli_fetch_array($query)) { ?>
                     <tr>
                         <td scope="row"><?php echo $idpro ?></td>
@@ -194,7 +201,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
 
     <?php
 
-    //echo $_POST['product'];
+    //Realizar la busqueda de productos  se envia al formulario
     if(isset($_POST["product"]) && $_POST["product"] != ''){
         //conexión BD
     $host = "localhost";
@@ -206,6 +213,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     if($conn->connect_error){
         die("Database Error : " . $conn->connect_error);
     }
+    //Obtener el termino de busqueda
      $product = $_POST['product'];
      $sql = "SELECT * FROM product WHERE  proname LIKE '%$product%'";
      $result = $conn->query($sql);
@@ -218,8 +226,10 @@ $query = mysqli_query($conn, $sql_fetch_todos);
      }
     }
     ?>
-    <?php
-    mysqli_close($conn);
+     
+     <?php
+//Cerrar la  conexion de la base de datos
+mysqli_close($conn);
     ?>
 
 
